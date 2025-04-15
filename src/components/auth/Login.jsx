@@ -41,10 +41,7 @@ function Login() {
               onClick={() => setShowPassword(!showPassword)}
               className=" absolute right-5 top-3/5 -translate-y-1/2 text-sm text-emerald-300 hover:text-white"
             > {showPassword ? "Hide" : "Show"}</button>
-            </div>
-            
-            
-            
+            </div>  
           <button 
           className=" mt-2 text-black outline-none bg-emerald-700  rounded-full text-xl px-5 py-3">
             LogIn

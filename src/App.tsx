@@ -1,11 +1,14 @@
-import './App.css'
-import Login from './components/auth/Login';
+import './App.css';
+
+import EmployeeDashboard from './components/dashboards/EmployeeDashboard';
+// import Login from "./components/auth/Login"
 
 function App() {
 
   return (
     <>
-    <Login />
+    {/* <Login /> */}
+    < EmployeeDashboard />
     </>
   )
 }
