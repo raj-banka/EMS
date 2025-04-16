@@ -1,8 +1,8 @@
 import React from "react";
 const  CreateTask : React.FC = ()=> {
     return (
-<div className="mt-7 p-5 bg-[#1c1c1c] rounded">
-<form className="flex w-full flex-wrap  justify-between items-start">
+<div className="mt-3 p-3 bg-[#3b3b3b] rounded w-[70%] ml-[17%] ">
+<form className="flex w-full flex-wrap justify-between items-star">
   <div className="w-1/2 ml-10">
     <div>
       <h3 className="text-sm text-white mb-0.5">Task Title</h3>
@@ -41,7 +41,7 @@ const  CreateTask : React.FC = ()=> {
     <textarea
       className="w-full h-44 text-sm text-white py-2 px-4 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4"
     ></textarea>
-    <button className="py-3 bg-emerald-500 hover:bg-emerald-600 px-5 rounded text-sm  w-full">
+    <button className="py-3 cursor-pointer bg-emerald-500 hover:bg-emerald-600 px-5 rounded text-sm  w-full">
       Create Task
     </button>
   </div>

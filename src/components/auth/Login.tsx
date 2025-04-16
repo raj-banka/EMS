@@ -1,14 +1,14 @@
 import React from "react";
 import { useState } from "react";
 
-const Login:React.FC =  ()=> {
+const Login:React.FC =  (props)=> {
     const [email, setEmail] = useState("");
     const [ password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
     const submitHandler = (e : React.FormEvent)=>{
         e.preventDefault();
-        alert(`Email : ${email} \n password : ${password}`);
+        props.handleLogin(email , password);
         setPassword("");
         setEmail("");   
     }
