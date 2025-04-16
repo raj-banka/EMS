@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
 
-function Login() {
+const Login:React.FC =  ()=> {
     const [email, setEmail] = useState("");
     const [ password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
-    const submitHandler = (e)=>{
+    const submitHandler = (e : React.FormEvent)=>{
         e.preventDefault();
         alert(`Email : ${email} \n password : ${password}`);
         setPassword("");
@@ -14,7 +14,7 @@ function Login() {
     }
 
   return (
-    <div className="flex justify-center items-center h-screen w-screen">
+    <div className="flex justify-center items-center h-screen w-full  text-white bg-[#1C1C1C]">
       <div className="border-2 border-emerald-600 rounded-2xl p-20">
         <form 
         onSubmit={submitHandler} 
@@ -39,11 +39,11 @@ function Login() {
           <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className=" absolute right-5 top-3/5 -translate-y-1/2 text-sm text-emerald-300 hover:text-white"
+              className=" absolute right-5 top-3/5 -translate-y-1/2 text-sm text-emerald-300 hover: hover:text-white cursor-pointer"
             > {showPassword ? "Hide" : "Show"}</button>
             </div>  
           <button 
-          className=" mt-2 text-black outline-none bg-emerald-700  rounded-full text-xl px-5 py-3">
+          className=" mt-2 text-black outline-none bg-emerald-400 hover:bg-emerald-600 cursor-pointer  rounded-full text-xl px-5 py-3">
             LogIn
           </button>
         </form>
