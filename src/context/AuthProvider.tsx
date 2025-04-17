@@ -1,13 +1,22 @@
-import {ReactNode} from 'react'
+import {ReactNode, useEffect, useState} from 'react'
 import { createContext } from 'react';
+import { getLocalStorage } from '../utils/LocalStorage';
 type AuthContextType = {
     children : ReactNode;
 };
+
 export const AuthContext = createContext();
 const AuthProvider = ({children} :AuthContextType) => {
+  const [ userData , setUserData ] = useState(null);
+  
+  useEffect(() => {
+    const {employees , admin } = getLocalStorage();
+    setUserData({employees , admin});
+  },[]);
+  
   return (
     <div>
-      <AuthContext.Provider value={"raj"}>
+      <AuthContext.Provider value={userData}>
          {children}
       </AuthContext.Provider>
     </div>

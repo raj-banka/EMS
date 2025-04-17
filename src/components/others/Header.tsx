@@ -1,9 +1,15 @@
 
-const Header = () => {
+const Header = ({data , changeUser}) => {
+  const logOutUser = () => {
+      localStorage.setItem("loggedIn",JSON.stringify(null));
+      changeUser(null);
+  }
   return (
     <div className='flex justify-between items-end p-5 bg-[#252424] w-full'>
-      <h1 className='text-xl font-medium'>Hello <br /><span className='ml-1 text-3xl font-semibold'>Raj</span></h1>
-      <button className='bg-red-600 text-white px-5 py-2 rounded-xl font-bold cursor-pointer'>LogOut</button>
+      <h1 className='text-xl font-medium'>Hello <br /><span className='ml-1 text-3xl font-semibold'>{data.name}</span></h1>
+      <button 
+      onClick={logOutUser}
+     className='bg-red-600 text-white px-5 py-2 rounded-xl font-bold cursor-pointer'>LogOut</button>
     </div>
   );
 }

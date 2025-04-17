@@ -1,33 +1,56 @@
 import { useContext, useEffect, useState } from 'react';
 import './App.css';
 import AdminDashboard from './components/dashboards/AdminDashboard';
-import { setLocalStorage ,getLocalStorage } from './utils/LocalStorage';
-
 import EmployeeDashboard from './components/dashboards/EmployeeDashboard';
 import Login from "./components/auth/Login"
-import AuthProvider, { AuthContext } from './context/AuthProvider';
+import { AuthContext } from './context/AuthProvider';
+import { setLocalStorage } from './utils/LocalStorage';
 
+setLocalStorage();
+// localStorage.clear();
 function App() {
-const[user , setUser] = useState(null);
+  const[userInfo ,setUserInfo ] = useState(null);
+  const AuthData = useContext(AuthContext);
+  const[user , setUser] = useState(null);
+// console.log(AuthData);
+
+useEffect(()=>{
+if(AuthData){
+  const loggedIn = JSON.parse(localStorage.getItem("loggedIn"));
+  if(loggedIn){
+  setUser(loggedIn.role);
+  setUserInfo(loggedIn.data);
+  }
+}
+},[AuthData]);
 
 const handleLogin = (email , password)=>{
-  if(email == "admin@a.com" && password == 123){
+  const admins = AuthData.admin.find((e)=>e.email == email && e.password == password);
+  if(admins){
     setUser('admin');
+    localStorage.setItem("loggedIn" , JSON.stringify({role:'admin',data:admins}));
+    setUserInfo(admins);
   }
-  else if(email == "user@a.com" && password == 123){
-    setUser('user');
+  else if(AuthData){
+    const users = AuthData.employees.find((e)=>e.email == email && e.password == password);
+    if(users){
+      setUser('user');
+      localStorage.setItem("loggedIn" ,JSON.stringify({role:'user',data:users}));
+      setUserInfo(users);
+    }
   }
   else{
     console.log("invalid");
   }
 }
-const data = useContext(AuthContext);
-console.log(data);
+// console.log(user);
 
   return (
     <>
+
     {!user ? <Login handleLogin = {handleLogin} /> : ""}
-    {user == 'admin' ? <AdminDashboard /> : user == 'user' ? <EmployeeDashboard /> : ""}
+    {user == 'admin' && <AdminDashboard changeUser = {setUser} data = {userInfo}/>}
+    {user == 'user' && userInfo && <EmployeeDashboard changeUser = {setUser} data = {userInfo} />}
     </>
   )
 }
