@@ -3,40 +3,41 @@ import CompletedTask from "./CompletedTask"
 import FailedTask from "./FailedTask"
 import NewTask from "./NewTask"
 import { useState ,useContext, useEffect} from "react";
-import { AuthContext } from "../../context/AuthProvider"
+import { AuthContext } from "../../context/Context"
+import{ContextType,TaskType,UserType} from '../../Interfaces/UserType'
 
-interface TaskType {
-  title : string,
-  date : string,
-  description : string,
-  categories : string,
-  active : boolean,
-  newTask : boolean,
-  completed : boolean,
-  failed : boolean
-}
+// interface TaskType {
+//   title : string,
+//   date : string,
+//   description : string,
+//   categories : string,
+//   active : boolean,
+//   newTask : boolean,
+//   completed : boolean,
+//   failed : boolean
+// }
 
-interface UserType{
-  name : string;
-  email : string;
-  password : string;
-  id : number;
-  // [key : string] : number | string | boolean,
-  taskCount : {
-   active : number,
-   newTask : number,
-   completed : number,
-   failed : number
-  },
-  tasks : TaskType[]
-}
+// interface UserType{
+//   name : string;
+//   email : string;
+//   password : string;
+//   id : number;
+//   // [key : string] : number | string | boolean,
+//   taskCount : {
+//    active : number,
+//    newTask : number,
+//    completed : number,
+//    failed : number
+//   },
+//   tasks : TaskType[]
+// }
 
 
 
-interface ContextType {
-  employees : UserType[],
-  admin : UserType[]
-}
+// interface ContextType {
+//   employees : UserType[],
+//   admin : UserType[]
+// }
 interface TaskListProps {
   data: UserType | null; 
 }

@@ -1,37 +1,6 @@
 import { useContext } from "react";
-import { AuthContext } from "../../context/AuthProvider";
-interface TaskType {
-  title : string,
-  date : string,
-  description : string,
-  categories : string,
-  active : boolean,
-  newTask : boolean,
-  completed : boolean,
-  failed : boolean
-}
-
-interface UserType{
-  name : string;
-  email : string;
-  password : string;
-  id : number;
-  // [key : string] : number | string | boolean,
-  taskCount : {
-   active : number,
-   newTask : number,
-   completed : number,
-   failed : number
-  },
-  tasks : TaskType[]
-}
-
-
-
-interface ContextType {
-  employees : UserType[],
-  admin : UserType[]
-}
+import { AuthContext } from "../../context/Context";
+import { UserType , ContextType } from "../../Interfaces/UserType";
 interface TaskListNumberProps {
   data: UserType | null; 
 }

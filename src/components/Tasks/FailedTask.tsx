@@ -1,13 +1,14 @@
-interface TaskType {
-  title : string,
-  date : string,
-  description : string,
-  categories : string,
-  active : boolean,
-  newTask : boolean,
-  completed : boolean,
-  failed : boolean
-}
+import { TaskType } from "../../Interfaces/UserType"
+// interface TaskType {
+//   title : string,
+//   date : string,
+//   description : string,
+//   categories : string,
+//   active : boolean,
+//   newTask : boolean,
+//   completed : boolean,
+//   failed : boolean
+// }
 
 const FailedTask = ({data }:{data : TaskType}) => {
   return (

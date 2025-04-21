@@ -1,23 +1,12 @@
-import {ReactNode, useEffect, useState  } from 'react'
-import React from 'react';
-import { createContext } from 'react';
+import { useEffect, useState , ReactNode  } from 'react'
+import { AuthContext } from './Context';
 import { getLocalStorage } from '../utils/LocalStorage';
+import { UserType } from '../Interfaces/UserType';
+
 type AuthContextPropsType = {
-    children : ReactNode;
+  children : ReactNode;
 };
 
-interface UserType{
-  name : string ;
-  email : string;
-  password : string;
-  id : number;
-  [key : string] : number | string | boolean;
-}
-
-type AuthValue = [userData: { admin: UserType[]; employees: UserType[] } | null,
-                   setUserData: React.Dispatch<React.SetStateAction<{ admin: UserType[]; employees: UserType[] } | null>>];
-
-export const AuthContext = createContext<AuthValue>([null , ()=>{}]);
 const AuthProvider = ({children} :AuthContextPropsType) => {
   const [ userData , setUserData ] = useState<{
     admin : UserType[];

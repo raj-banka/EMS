@@ -1,14 +1,14 @@
-
-interface TaskType {
-  title : string,
-  date : string,
-  description : string,
-  categories : string,
-  active : boolean,
-  newTask : boolean,
-  completed : boolean,
-  failed : boolean
-}
+import { TaskType } from "../../Interfaces/UserType"
+// interface TaskType {
+//   title : string,
+//   date : string,
+//   description : string,
+//   categories : string,
+//   active : boolean,
+//   newTask : boolean,
+//   completed : boolean,
+//   failed : boolean
+// }
 
 interface NewTaskProps {
   data : TaskType,

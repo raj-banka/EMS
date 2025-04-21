@@ -1,31 +1,32 @@
 import Header from '../others/Header'
 import TaskListNumber from '../Tasks/TaskListNumber'
 import TaskList from '../Tasks/TaskList'
+import { UserType } from "../../Interfaces/UserType";
 
-interface UserType{
-  name : string;
-  email : string;
-  password : string;
-  id : number;
-  // [key : string] : number | string | boolean,
-  taskCount : {
-   active : number,
-   newTask : number,
-   completed : number,
-   failed : number
-  },
-  tasks : {
-    title : string,
-    date : string,
-    description : string,
-    categories : string,
-    active : boolean,
-    newTask : boolean,
-    completed : boolean,
-    failed : boolean
-  }[]
+// interface UserType{
+//   name : string;
+//   email : string;
+//   password : string;
+//   id : number;
+//   // [key : string] : number | string | boolean,
+//   taskCount : {
+//    active : number,
+//    newTask : number,
+//    completed : number,
+//    failed : number
+//   },
+//   tasks : {
+//     title : string,
+//     date : string,
+//     description : string,
+//     categories : string,
+//     active : boolean,
+//     newTask : boolean,
+//     completed : boolean,
+//     failed : boolean
+//   }[]
  
-}
+// }
 interface EmployeeDashboardProps {
   data: UserType | null; 
   changeUser: React.Dispatch<React.SetStateAction<'admin' | 'user' | null>>;

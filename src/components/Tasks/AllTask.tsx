@@ -1,36 +1,37 @@
-import { AuthContext } from "../../context/AuthProvider"
+import { AuthContext } from "../../context/Context"
 import { useContext, useState } from "react"
 import EmployeeDashboard from "../dashboards/EmployeeDashboard";
+import { UserType , ContextType} from "../../Interfaces/UserType";
 
-interface UserType{
-  name : string;
-  email : string;
-  password : string;
-  id : number;
-  // [key : string] : number | string | boolean,
-  taskCount : {
-   active : number,
-   newTask : number,
-   completed : number,
-   failed : number
-  },
-  tasks : {
-    title : string,
-    date : string,
-    description : string,
-    categories : string,
-    active : boolean,
-    newTask : boolean,
-    completed : boolean,
-    failed : boolean
-  }[]
+// interface UserType{
+//   name : string;
+//   email : string;
+//   password : string;
+//   id : number;
+//   // [key : string] : number | string | boolean,
+//   taskCount : {
+//    active : number,
+//    newTask : number,
+//    completed : number,
+//    failed : number
+//   },
+//   tasks : {
+//     title : string,
+//     date : string,
+//     description : string,
+//     categories : string,
+//     active : boolean,
+//     newTask : boolean,
+//     completed : boolean,
+//     failed : boolean
+//   }[]
  
-}
+// }
 
-interface ContextType {
-  employees : UserType[],
-  admin : UserType[]
-}
+// interface ContextType {
+//   employees : UserType[],
+//   admin : UserType[]
+// }
 
 
 const AllTask = () => {

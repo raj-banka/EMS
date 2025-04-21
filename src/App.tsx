@@ -3,42 +3,18 @@ import './App.css';
 import AdminDashboard from './components/dashboards/AdminDashboard';
 import EmployeeDashboard from './components/dashboards/EmployeeDashboard';
 import Login from "./components/auth/Login"
-import  { AuthContext }from './context/AuthProvider'
+import  { AuthContext }from './context/Context'
+import { UserType , ContextType} from "./Interfaces/UserType"
 // import { setLocalStorage } from './utils/LocalStorage';
 
 // setLocalStorage();
 // localStorage.clear();
 
-interface UserType{
-  name : string;
-  email : string;
-  password : string;
-  id : number;
-  taskCount : {
-   active : number,
-   newTask : number,
-   completed : number,
-   failed : number
-  },
-  tasks : {
-    title : string,
-    date : string,
-    description : string,
-    categories : string,
-    active : boolean,
-    newTask : boolean,
-    completed : boolean,
-    failed : boolean
-  }[]
-}
+
 
 interface loggedInData{
   role : 'admin' | 'user' | null;
   data : UserType | null
-}
-interface ContextType {
-  employees : UserType[],
-  admin : UserType[]
 }
 
 function App() {

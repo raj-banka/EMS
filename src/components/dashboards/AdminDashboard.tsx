@@ -2,30 +2,7 @@ import React from "react";
 import Header from "../others/Header";
 import CreateTask from "../others/CreateTask";
 import AllTask from "../Tasks/AllTask";
-
-interface UserType{
-  name : string;
-  email : string;
-  password : string;
-  id : number;
-  // [key : string] : number | string | boolean,
-  taskCount : {
-   active : number,
-   newTask : number,
-   completed : number,
-   failed : number
-  },
-  tasks : {
-    title : string,
-    date : string,
-    description : string,
-    categories : string,
-    active : boolean,
-    newTask : boolean,
-    completed : boolean,
-    failed : boolean
-  }[]
-}
+import { UserType } from "../../Interfaces/UserType";
 
 interface AdminDashboardProps {
   data: UserType | null; 
