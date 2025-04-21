@@ -1,6 +1,15 @@
-import React from 'react'
+interface TaskType {
+  title : string,
+  date : string,
+  description : string,
+  categories : string,
+  active : boolean,
+  newTask : boolean,
+  completed : boolean,
+  failed : boolean
+}
 
-const FailedTask = ({data }) => {
+const FailedTask = ({data }:{data : TaskType}) => {
   return (
     <div className='flex-shrink-0 w-[350px] h-full bg-red-500 text-black rounded-2xl p-5'>
         <div className='flex justify-between'>

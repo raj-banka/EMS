@@ -1,7 +1,21 @@
-import React from 'react'
-import AcceptedTask from './AcceptedTask'
 
-  const NewTask = ({ data, onAccept }) => {
+interface TaskType {
+  title : string,
+  date : string,
+  description : string,
+  categories : string,
+  active : boolean,
+  newTask : boolean,
+  completed : boolean,
+  failed : boolean
+}
+
+interface NewTaskProps {
+  data : TaskType,
+  onAccept : (task : TaskType , status : string) => void
+}
+
+  const NewTask = ({ data, onAccept } : NewTaskProps) => {
     const acceptedTask = () => {
       onAccept(data , "active");  // pass the data to parent to update it
     }

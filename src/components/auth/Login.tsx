@@ -1,9 +1,12 @@
 import React from "react";
 import { useState } from "react";
 
-const Login:React.FC =  (props)=> {
-    const [email, setEmail] = useState("");
-    const [ password, setPassword] = useState("");
+type LoginProps = {
+  handleLogin: (email: string, password: string) => void;
+};
+const Login:React.FC<LoginProps>=  (props)=> {
+    const [email, setEmail] = useState<string>("");
+    const [ password, setPassword] = useState<string>("");
     const [showPassword, setShowPassword] = useState(false);
 
     const submitHandler = (e : React.FormEvent)=>{

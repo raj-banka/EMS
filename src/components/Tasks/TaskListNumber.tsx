@@ -1,9 +1,45 @@
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
+interface TaskType {
+  title : string,
+  date : string,
+  description : string,
+  categories : string,
+  active : boolean,
+  newTask : boolean,
+  completed : boolean,
+  failed : boolean
+}
 
-const TaskListNumber = ({data}) => {
-  const [userData , setUserData] = useContext(AuthContext);
-  const user = userData.employees.find((e) => e.id === data.id) ;
+interface UserType{
+  name : string;
+  email : string;
+  password : string;
+  id : number;
+  // [key : string] : number | string | boolean,
+  taskCount : {
+   active : number,
+   newTask : number,
+   completed : number,
+   failed : number
+  },
+  tasks : TaskType[]
+}
+
+
+
+interface ContextType {
+  employees : UserType[],
+  admin : UserType[]
+}
+interface TaskListNumberProps {
+  data: UserType | null; 
+}
+const TaskListNumber: React.FC<TaskListNumberProps> = ({data}) => {
+  const [userData ] = useContext(AuthContext)as [ContextType | null, React.Dispatch<React.SetStateAction<ContextType> | null>];
+  if(!userData) return;
+  const user = userData.employees.find((e:UserType) => e.id === data?.id) ;
+  if(!user) return;
   return (
     <div className="flex mt-10 justify-between gap-5 w-full px-5 text-black">
     <div className='bg-green-300 w-[45%] py-6 px-9 rounded-2xl'>

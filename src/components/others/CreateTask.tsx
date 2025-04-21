@@ -2,15 +2,46 @@ import React, { useContext } from "react";
 import { useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 
+interface UserType{
+  name : string;
+  email : string;
+  password : string;
+  id : number;
+  // [key : string] : number | string | boolean,
+  taskCount : {
+   active : number,
+   newTask : number,
+   completed : number,
+   failed : number
+  },
+  tasks : {
+    title : string,
+    date : string,
+    description : string,
+    categories : string,
+    active : boolean,
+    newTask : boolean,
+    completed : boolean,
+    failed : boolean
+  }[]
+ 
+}
+
+interface ContextType {
+  employees : UserType[],
+  admin : UserType[]
+}
+
 const  CreateTask : React.FC = ()=> {
-  const [title , setTitle] = useState("");
+
+  const [title , setTitle]  = useState("");
   const [date , setDate] = useState("");
   const [description , setDescription] = useState("");
   const [categories , setCategories] = useState("");
   const [assignedTo , setAssignedTo] = useState("");
-  const [newTask , setNewTask] = useState({});
+  // const [newTask , setNewTask] = useState({});
   
-  const [ userData , setUserData] = useContext(AuthContext);
+  const [userData , setUserData ] = useContext(AuthContext)as [ContextType | null, React.Dispatch<React.SetStateAction<ContextType> | null>];
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
   
@@ -25,7 +56,7 @@ const  CreateTask : React.FC = ()=> {
       failed: false
     };
   
-    const updatedEmployees = userData.employees.map((emp) => {
+    const updatedEmployees = userData?.employees?.map((emp:UserType) => {
       if (emp.name === assignedTo) {
         const updateCount = {
           ...emp.taskCount,
@@ -38,8 +69,9 @@ const  CreateTask : React.FC = ()=> {
         };
       }
       return emp;
-    });
+    }) || [];
   
+    if (!userData) return; 
     const updatedUserData = { ...userData, employees: updatedEmployees };
     setUserData(updatedUserData);
     localStorage.setItem("employees", JSON.stringify(updatedEmployees));
@@ -83,10 +115,10 @@ className="flex w-full flex-wrap justify-between items-star">
   <select
     value={assignedTo}
     onChange={(e) => setAssignedTo(e.target.value)}
-    className="text-sm text-white py-1 px-2 width-4/5 rounded outline-none bg-transparent border-2 border-gray-400 mb-4 bg-[#2c2c2c]"
+    className="text-sm text-white py-1 px-2 width-4/5 rounded outline-none border-2 border-gray-400 mb-4 bg-[#2c2c2c]"
   >
     <option className="bg-[#2c2c2c] text-white" value="">Select an employee</option>
-    {userData.employees.map((employee, index) => (
+    {userData?.employees.map((employee:UserType, index:number) => (
       <option className="bg-[#2c2c2c] text-white" key={index} value={employee.name}>
         {employee.name}
       </option>
