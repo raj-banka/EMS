@@ -3,37 +3,6 @@ import { useContext, useState } from "react"
 import EmployeeDashboard from "../dashboards/EmployeeDashboard";
 import { UserType , ContextType} from "../../Interfaces/UserType";
 
-// interface UserType{
-//   name : string;
-//   email : string;
-//   password : string;
-//   id : number;
-//   // [key : string] : number | string | boolean,
-//   taskCount : {
-//    active : number,
-//    newTask : number,
-//    completed : number,
-//    failed : number
-//   },
-//   tasks : {
-//     title : string,
-//     date : string,
-//     description : string,
-//     categories : string,
-//     active : boolean,
-//     newTask : boolean,
-//     completed : boolean,
-//     failed : boolean
-//   }[]
- 
-// }
-
-// interface ContextType {
-//   employees : UserType[],
-//   admin : UserType[]
-// }
-
-
 const AllTask = () => {
  const [userData ] = useContext(AuthContext)as [ContextType | null, React.Dispatch<React.SetStateAction<ContextType> | null>];
  
