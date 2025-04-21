@@ -5,18 +5,18 @@ type AuthContextType = {
     children : ReactNode;
 };
 
-export const AuthContext = createContext();
+export const AuthContext = createContext('');
 const AuthProvider = ({children} :AuthContextType) => {
   const [ userData , setUserData ] = useState(null);
   
   useEffect(() => {
-    const {employees , admin } = getLocalStorage();
-    setUserData({employees , admin});
+    const {admin , employees } = getLocalStorage();
+    setUserData({admin,employees});
   },[]);
   
   return (
     <div>
-      <AuthContext.Provider value={userData}>
+      <AuthContext.Provider value={[userData , setUserData]}>
          {children}
       </AuthContext.Provider>
     </div>

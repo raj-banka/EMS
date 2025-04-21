@@ -1,8 +1,11 @@
 
 const Header = ({data , changeUser}) => {
   const logOutUser = () => {
+    const user = changeUser();
+    console.log(user)
+    if(!user){
       localStorage.setItem("loggedIn",JSON.stringify(null));
-      changeUser(null);
+      changeUser(null);}
   }
   return (
     <div className='flex justify-between items-end p-5 bg-[#252424] w-full'>

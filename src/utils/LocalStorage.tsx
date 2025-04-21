@@ -7,44 +7,40 @@ const employees = [
     tasks: [
       {
         active: true,
-        newTask: true,
         completed: false,
         failed: false,
-        pending: true,
+        newTask: false,
         title: "Design Landing Page",
         description: "Create a responsive landing page with Tailwind CSS.",
         date: "2025-04-16",
-        categories: ["design", "frontend"]
+        categories: ["frontend"]
       },
       {
         active: false,
-        newTask: false,
         completed: true,
         failed: false,
-        pending: false,
+        newTask: false,
         title: "Review Color Scheme",
         description: "Assess and update color palette for branding consistency.",
         date: "2025-04-13",
-        categories: ["design", "branding"]
+        categories: ["branding"]
       },
       {
-        active: true,
-        newTask: false,
+        active: false,
         completed: false,
         failed: false,
-        pending: true,
+        newTask: true,
         title: "Design Icons",
         description: "Design consistent iconography for the mobile app.",
         date: "2025-04-17",
-        categories: ["design", "ui"]
+        categories: ["ui"]
       }
     ],
     taskCount: {
-      active: 2,
-      pending: 2,
-      newTask: 1,
-      completed: 1,
-      failed: 0
+      active: 1,  // 1 active task
+      newTask: 1, // 1 new task
+      completed: 1, // 1 completed task
+      failed: 0 // No failed tasks
     }
   },
   {
@@ -55,55 +51,50 @@ const employees = [
     tasks: [
       {
         active: false,
-        newTask: false,
         completed: true,
         failed: false,
-        pending: false,
+        newTask: false,
         title: "Setup Jenkins Pipeline",
         description: "Create a CI/CD pipeline using Jenkins and Docker.",
         date: "2025-04-14",
-        categories: ["devops", "automation"]
+        categories: ["automation"]
       },
       {
         active: true,
-        newTask: false,
         completed: false,
         failed: false,
-        pending: true,
+        newTask: false,
         title: "Optimize Build Process",
         description: "Speed up the Webpack build and deployment time.",
         date: "2025-04-17",
-        categories: ["devops", "performance"]
+        categories: ["performance"]
       },
       {
         active: false,
-        newTask: false,
         completed: false,
         failed: true,
-        pending: false,
+        newTask: false,
         title: "Fix Deployment Bug",
         description: "Resolve issue causing rollback after deployment.",
         date: "2025-04-15",
-        categories: ["bugfix", "deployment"]
+        categories: ["deployment"]
       },
       {
-        active: true,
-        newTask: true,
+        active: false,
         completed: false,
         failed: false,
-        pending: true,
+        newTask: true,
         title: "Write Deployment Scripts",
         description: "Automate staging deployment with custom scripts.",
         date: "2025-04-18",
-        categories: ["scripting", "devops"]
+        categories: ["devops"]
       }
     ],
     taskCount: {
-      active: 2,
-      pending: 2,
-      newTask: 1,
-      completed: 1,
-      failed: 1
+      active: 1,  // 1 active task
+      newTask: 1, // 1 new task
+      completed: 1, // 1 completed task
+      failed: 1 // 1 failed task
     }
   },
   {
@@ -114,44 +105,40 @@ const employees = [
     tasks: [
       {
         active: true,
-        newTask: false,
         completed: false,
         failed: false,
-        pending: true,
+        newTask: false,
         title: "Integrate Razorpay",
         description: "Set up Razorpay API for handling online payments.",
         date: "2025-04-17",
-        categories: ["integration", "payments"]
+        categories: ["payments"]
       },
       {
         active: false,
-        newTask: false,
         completed: false,
         failed: true,
-        pending: false,
+        newTask: false,
         title: "Refactor Auth Module",
         description: "Rewrite authentication logic for better scalability.",
         date: "2025-04-15",
-        categories: ["backend", "auth"]
+        categories: ["auth"]
       },
       {
         active: false,
-        newTask: false,
         completed: true,
         failed: false,
-        pending: false,
+        newTask: false,
         title: "Setup Environment Variables",
         description: "Use dotenv to manage sensitive config securely.",
         date: "2025-04-12",
-        categories: ["backend", "config"]
+        categories: ["config"]
       }
     ],
     taskCount: {
-      active: 1,
-      pending: 1,
-      newTask: 0,
-      completed: 1,
-      failed: 1
+      active: 1,  // 1 active task
+      newTask: 0, // No new task
+      completed: 1, // 1 completed task
+      failed: 1 // 1 failed task
     }
   },
   {
@@ -162,66 +149,60 @@ const employees = [
     tasks: [
       {
         active: false,
-        newTask: false,
         completed: false,
         failed: true,
-        pending: false,
+        newTask: false,
         title: "Draft User Manual",
         description: "Write step-by-step onboarding guide for new users.",
         date: "2025-04-12",
-        categories: ["documentation", "writing"]
+        categories: ["writing"]
       },
       {
-        active: true,
-        newTask: true,
+        active: false,
         completed: false,
         failed: false,
-        pending: true,
+        newTask: true,
         title: "Create FAQs",
         description: "Collect and write FAQ entries for support section.",
         date: "2025-04-17",
-        categories: ["content", "support"]
+        categories: ["support"]
       },
       {
         active: true,
-        newTask: false,
         completed: false,
         failed: false,
-        pending: true,
+        newTask: false,
         title: "Revise Internal Docs",
         description: "Update outdated developer guides and API notes.",
         date: "2025-04-18",
-        categories: ["documentation", "internal"]
+        categories: ["documentation"]
       },
       {
         active: false,
-        newTask: false,
         completed: true,
         failed: false,
-        pending: false,
+        newTask: false,
         title: "Team Wiki Setup",
         description: "Create a Notion workspace for documentation.",
         date: "2025-04-10",
-        categories: ["knowledgebase", "setup"]
+        categories: ["setup"]
       },
       {
         active: false,
-        newTask: false,
         completed: false,
         failed: true,
-        pending: false,
+        newTask: false,
         title: "Archive Old Docs",
         description: "Clean up deprecated pages and move to archive.",
         date: "2025-04-11",
-        categories: ["cleanup", "documentation"]
+        categories: ["cleanup"]
       }
     ],
     taskCount: {
-      active: 2,
-      pending: 2,
-      newTask: 1,
-      completed: 1,
-      failed: 2
+      active: 1,  // 1 active task
+      newTask: 1, // 1 new task
+      completed: 1, // 1 completed task
+      failed: 2 // 2 failed tasks
     }
   },
   {
@@ -232,47 +213,44 @@ const employees = [
     tasks: [
       {
         active: true,
-        newTask: false,
         completed: false,
         failed: false,
-        pending: true,
+        newTask: false,
         title: "Fix iOS Bugs",
         description: "Resolve touch event issues on iOS devices.",
         date: "2025-04-18",
-        categories: ["debugging", "mobile"]
+        categories: ["mobile"]
       },
       {
         active: false,
-        newTask: false,
         completed: true,
         failed: false,
-        pending: false,
+        newTask: false,
         title: "Code Review",
         description: "Review pull requests from frontend team.",
         date: "2025-04-13",
-        categories: ["review", "frontend"]
+        categories: ["review"]
       },
       {
-        active: true,
-        newTask: true,
+        active: false,
         completed: false,
         failed: false,
-        pending: true,
+        newTask: true,
         title: "Setup Crashlytics",
         description: "Integrate Firebase Crashlytics for app error tracking.",
         date: "2025-04-17",
-        categories: ["monitoring", "mobile"]
+        categories: ["monitoring"]
       }
     ],
     taskCount: {
-      active: 2,
-      pending: 2,
-      newTask: 1,
-      completed: 1,
-      failed: 0
+      active: 1,  // 1 active task
+      newTask: 1, // 1 new task
+      completed: 1, // 1 completed task
+      failed: 0 // No failed tasks
     }
   }
 ];
+
 
   const admin = [
     {

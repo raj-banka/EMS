@@ -1,6 +1,6 @@
 import Header from '../others/Header'
-import TaskListNumber from '../others/TaskListNumber'
-import TaskList from '../../TaskList/TaskList'
+import TaskListNumber from '../Tasks/TaskListNumber'
+import TaskList from '../Tasks/TaskList'
 
 function EmployeeDashboard({data , changeUser}) {
   return (

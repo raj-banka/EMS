@@ -1,6 +1,6 @@
 import Header from "../others/Header";
 import CreateTask from '../others/CreateTask'
-import AllTask from "../others/AllTask";
+import AllTask from "../Tasks/AllTask";
 
 const AdminDashboard = (props) => {
   return (

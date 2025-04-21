@@ -1,20 +1,58 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
+import { AuthContext } from "../../context/AuthProvider";
+
 const  CreateTask : React.FC = ()=> {
   const [title , setTitle] = useState("");
   const [date , setDate] = useState("");
   const [description , setDescription] = useState("");
   const [categories , setCategories] = useState("");
   const [assignedTo , setAssignedTo] = useState("");
-  const submitHandler = (e : React.FormEvent)=>{
+  const [newTask , setNewTask] = useState({});
+  
+  const [ userData , setUserData] = useContext(AuthContext);
+  const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(title , date , description , categories , assignedTo);
+  
+    const task = {
+      title,
+      date,
+      description,
+      categories,
+      active: false,
+      newTask: true,
+      completed: false,
+      failed: false
+    };
+  
+    const updatedEmployees = userData.employees.map((emp) => {
+      if (emp.name === assignedTo) {
+        const updateCount = {
+          ...emp.taskCount,
+          newTask: emp.taskCount.newTask + 1
+        }
+        return {
+          ...emp,
+          tasks: [...emp.tasks, task],
+          taskCount: updateCount
+        };
+      }
+      return emp;
+    });
+  
+    const updatedUserData = { ...userData, employees: updatedEmployees };
+    setUserData(updatedUserData);
+    localStorage.setItem("employees", JSON.stringify(updatedEmployees));
+    // console.log(userData);
+  
+    // Clear form
     setTitle("");
     setDate("");
     setDescription("");
     setCategories("");
     setAssignedTo("");
-  }
+  };
+  
     return (
 <div className="mt-3 p-3 bg-[#3b3b3b] rounded w-[70%] ml-[17%] ">
 <form 
@@ -41,15 +79,21 @@ className="flex w-full flex-wrap justify-between items-star">
       />
     </div>
     <div>
-      <h3 className="text-sm text-white mb-0.5">Assigned to</h3>
-      <input
-      value={assignedTo}
-      onChange={(e)=>setAssignedTo(e.target.value)}
-        className="text-sm text-white py-1 px-2 width-4/5 rounded outline-none bg-transparent border-2 border-gray-400 mb-4"
-        type="text"
-        placeholder="Enter employee name"
-      />
-    </div>
+  <h3 className="text-sm text-white mb-0.5">Assigned to</h3>
+  <select
+    value={assignedTo}
+    onChange={(e) => setAssignedTo(e.target.value)}
+    className="text-sm text-white py-1 px-2 width-4/5 rounded outline-none bg-transparent border-2 border-gray-400 mb-4 bg-[#2c2c2c]"
+  >
+    <option className="bg-[#2c2c2c] text-white" value="">Select an employee</option>
+    {userData.employees.map((employee, index) => (
+      <option className="bg-[#2c2c2c] text-white" key={index} value={employee.name}>
+        {employee.name}
+      </option>
+    ))}
+  </select>
+</div>
+
     <div>
       <h3 className="text-sm text-white mb-0.5">Categories</h3>
       <input
