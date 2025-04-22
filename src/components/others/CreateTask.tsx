@@ -36,7 +36,10 @@ import { UserType , ContextType} from "../../Interfaces/UserType";
 const  CreateTask : React.FC = ()=> {
 
   const [title , setTitle]  = useState("");
-  const [date , setDate] = useState("");
+  const [date , setDate] = useState(()=>{
+    const today = new Date().toISOString().split("T")[0]; // format to 'YYYY-MM-DD'
+      return today;
+  });
   const [description , setDescription] = useState("");
   const [categories , setCategories] = useState("");
   const [assignedTo , setAssignedTo] = useState("");
@@ -95,6 +98,7 @@ className="flex w-full flex-wrap justify-between items-star">
     <div>
       <h3 className="text-sm text-white mb-0.5">Task Title</h3>
       <input
+      required
       value={title}
       onChange={(e)=>setTitle(e.target.value)}
         className="text-sm text-white py-1 px-2 width-4/5 rounded outline-none bg-transparent border-2 border-gray-400 mb-4"
@@ -114,6 +118,7 @@ className="flex w-full flex-wrap justify-between items-star">
     <div>
   <h3 className="text-sm text-white mb-0.5">Assigned to</h3>
   <select
+  required
     value={assignedTo}
     onChange={(e) => setAssignedTo(e.target.value)}
     className="text-sm text-white py-1 px-2 width-4/5 rounded outline-none border-2 border-gray-400 mb-4 bg-[#2c2c2c]"
@@ -130,6 +135,7 @@ className="flex w-full flex-wrap justify-between items-star">
     <div>
       <h3 className="text-sm text-white mb-0.5">Categories</h3>
       <input
+      required
       value={categories}
       onChange={(e)=>setCategories(e.target.value)}
         className="text-sm text-white py-1 px-2 width-4/5 rounded outline-none bg-transparent border-2 border-gray-400 mb-4"
@@ -141,6 +147,7 @@ className="flex w-full flex-wrap justify-between items-star">
   <div className="w-2/5 flex flex-col items-start pl-5">
     <h3 className="text-sm text-white mb-0.5">Description</h3>
     <textarea
+    required
     value={description}
     onChange={(e)=>setDescription(e.target.value)}
       className="w-full h-44 text-sm text-white py-2 px-4 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4"
