@@ -2,30 +2,34 @@ import AcceptedTask from "./AcceptedTask"
 import CompletedTask from "./CompletedTask"
 import FailedTask from "./FailedTask"
 import NewTask from "./NewTask"
-import { useState ,useContext, useEffect} from "react";
+import { useContext, useEffect} from "react";
 import { AuthContext } from "../../context/Context"
 import{ContextType,TaskType,UserType} from '../../Interfaces/UserType'
 
 interface TaskListProps {
   data: UserType | null; 
 }
-const TaskList: React.FC<TaskListProps> = ({data}  ) => {
+const TaskList: React.FC<TaskListProps> = ({data} ) => {
 
-  const [employeeData, setEmployeeData] = useState(data);
-  useEffect(()=>{
-    setEmployeeData(data);
-  },[data]);
+  // const [employeeData, setEmployeeData] = useState(data);
+
+  // useEffect(()=>{
+  //   setEmployeeData(data);
+  // },[data]);
+
+  
   const [userData , setUserData ] = useContext(AuthContext)as [ContextType | null, React.Dispatch<React.SetStateAction<ContextType> | null>];
+  const employeeData = userData?.employees.find((e:UserType) => e.id === data?.id) ;
 
   
 
 
   const handleAcceptTask = (taskToUpdate : TaskType, status : string) => {
-
+console.log(employeeData);
     if(!employeeData) return;
     const updatedTasks  = employeeData.tasks.map(task => {
       if (task === taskToUpdate) {
-        console.log(task)
+        // console.log(task)
         return {
           ...task,
           newTask: false,
@@ -45,6 +49,7 @@ const TaskList: React.FC<TaskListProps> = ({data}  ) => {
       failed : 0
     }
 
+    // console.log(updatedTasks)
     updatedTasks?.forEach(task => {
       if(task.newTask) newCount.newTask++;
       else if(task.active) newCount.active++;
@@ -56,15 +61,16 @@ const TaskList: React.FC<TaskListProps> = ({data}  ) => {
        tasks : updatedTasks , 
        taskCount : newCount
       }
-    setEmployeeData(updatedEmployee);
+    // setEmployeeData(updatedEmployee);
     if(!userData) return;
+    // console.log(userData)
     setUserData({
       ...userData,
       employees : userData.employees.map((emp)=>
         (emp.id === employeeData?.id) ? updatedEmployee : emp)
     });
   };
-
+  // console.log(userData)
   useEffect(() => {
     localStorage.setItem("employees", JSON.stringify(userData?.employees));
   }, [userData?.employees]);
@@ -74,8 +80,8 @@ const TaskList: React.FC<TaskListProps> = ({data}  ) => {
      id='tasklist' className='flex w-full overflow-x-auto flex-nowrap p-5 mt-5 h-[55%] gap-5 justify-start items-center'>
       {
         employeeData?.tasks.map((t:TaskType, idx:number) => {
-          if (t.active) return <AcceptedTask key={idx} data={t} onAccept={handleAcceptTask} />;
           if (t.newTask) return <NewTask key={idx} data={t} onAccept={handleAcceptTask} />;
+          if (t.active) return <AcceptedTask key={idx} data={t} onAccept={handleAcceptTask} />;
           if (t.completed) return <CompletedTask key={idx} data={t} />;
           if (t.failed) return <FailedTask key={idx} data={t} />;
         })
