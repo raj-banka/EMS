@@ -6,16 +6,13 @@ import App from './App.tsx'
 import { Provider } from 'react-redux'
 import { store } from './Redux/store.ts'
 import { createBrowserRouter, RouterProvider  } from 'react-router' 
-import EmployeeDashboard from './components/dashboards/EmployeeDashboard.tsx'
+// import EmployeeDashboard from './components/dashboards/EmployeeDashboard.tsx'
 
 const router = createBrowserRouter([{
   path: "/",
   element: <App/>
 },
-{
-  path : "/Emp/:id",
-  element : <EmployeeDashboard/>
-}])
+])
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
