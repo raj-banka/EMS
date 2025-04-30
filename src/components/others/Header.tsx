@@ -24,7 +24,7 @@ import { UserType } from "../../Interfaces/UserType";
  
 // }
 interface HeaderProps {
-  data: UserType | null; 
+  data?: UserType | null; 
   changeUser: React.Dispatch<React.SetStateAction<'user' | 'admin' | null>>;
 }
 const Header: React.FC<HeaderProps>= ({data , changeUser}) => {

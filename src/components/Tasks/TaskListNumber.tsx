@@ -1,11 +1,14 @@
-import { useContext } from "react";
-import { AuthContext } from "../../context/Context";
-import { UserType , ContextType } from "../../Interfaces/UserType";
+// import { useContext } from "react";
+// import { AuthContext } from "../../context/Context";
+import { useSelector } from "react-redux";
+import { UserType } from "../../Interfaces/UserType";
+import { RootState } from "../../Redux/store";
 interface TaskListNumberProps {
   data: UserType | null; 
 }
 const TaskListNumber: React.FC<TaskListNumberProps> = ({data}) => {
-  const [userData ] = useContext(AuthContext)as [ContextType | null, React.Dispatch<React.SetStateAction<ContextType> | null>];
+  // const [userData ] = useContext(AuthContext)as [ContextType | null, React.Dispatch<React.SetStateAction<ContextType> | null>];
+  const  userData = useSelector((state:RootState) => state.authInfo);
   if(!userData) return;
   const user = userData.employees.find((e:UserType) => e.id === data?.id) ;
   if(!user) return;

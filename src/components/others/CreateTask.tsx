@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
+// import React, { useContext } from "react";
 import { useState } from "react";
-import { AuthContext } from "../../context/Context";
-import { UserType , ContextType} from "../../Interfaces/UserType";
+// import { AuthContext } from "../../context/Context";
+import { ContextType, UserType } from "../../Interfaces/UserType";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../Redux/store";
 
 // interface UserType{
 //   name : string;
@@ -45,7 +47,9 @@ const  CreateTask : React.FC = ()=> {
   const [assignedTo , setAssignedTo] = useState("");
   // const [newTask , setNewTask] = useState({});
   
-  const [userData , setUserData ] = useContext(AuthContext)as [ContextType | null, React.Dispatch<React.SetStateAction<ContextType> | null>];
+  // const [userData , setUserData ] = useContext(AuthContext)as [ContextType | null, React.Dispatch<React.SetStateAction<ContextType> | null>];
+const userData= useSelector((state:RootState) => state.authInfo);
+const dispatch = useDispatch();
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
   
@@ -59,6 +63,7 @@ const  CreateTask : React.FC = ()=> {
       completed: false,
       failed: false
     };
+    console.log(userData , "check2")
   
     const updatedEmployees = userData?.employees?.map((emp:UserType) => {
       if (emp.name === assignedTo) {
@@ -74,10 +79,13 @@ const  CreateTask : React.FC = ()=> {
       }
       return emp;
     }) || [];
+
+    console.log(updatedEmployees , "check2")
   
     if (!userData) return; 
-    const updatedUserData = { ...userData, employees: updatedEmployees };
-    setUserData(updatedUserData);
+    const updatedUserData : ContextType= { ...userData, employees: updatedEmployees };
+    // setUserData(updatedUserData);
+    dispatch({type : 'UPDATE_USER_DATA' , payload:updatedUserData});
     localStorage.setItem("employees", JSON.stringify(updatedEmployees));
     // console.log(userData);
   

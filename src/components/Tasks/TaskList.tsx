@@ -2,9 +2,12 @@ import AcceptedTask from "./AcceptedTask"
 import CompletedTask from "./CompletedTask"
 import FailedTask from "./FailedTask"
 import NewTask from "./NewTask"
-import { useContext, useEffect} from "react";
-import { AuthContext } from "../../context/Context"
-import{ContextType,TaskType,UserType} from '../../Interfaces/UserType'
+import {  useEffect} from "react";
+// import { AuthContext } from "../../context/Context"
+import{TaskType,UserType} from '../../Interfaces/UserType'
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../Redux/store";
+import { setUserData } from "../../Features/AuthSlice";
 
 interface TaskListProps {
   data: UserType | null; 
@@ -18,7 +21,9 @@ const TaskList: React.FC<TaskListProps> = ({data} ) => {
   // },[data]);
 
   
-  const [userData , setUserData ] = useContext(AuthContext)as [ContextType | null, React.Dispatch<React.SetStateAction<ContextType> | null>];
+  // const [userData , setUserData ] = useContext(AuthContext)as [ContextType | null, React.Dispatch<React.SetStateAction<ContextType> | null>];
+  const userData = useSelector((state:RootState) => state.authInfo);
+  const dispatch = useDispatch();
   const employeeData = userData?.employees.find((e:UserType) => e.id === data?.id) ;
 
   
@@ -64,11 +69,15 @@ console.log(employeeData);
     // setEmployeeData(updatedEmployee);
     if(!userData) return;
     // console.log(userData)
-    setUserData({
+    const updatedUserData = ({
       ...userData,
       employees : userData.employees.map((emp)=>
         (emp.id === employeeData?.id) ? updatedEmployee : emp)
     });
+    console.log(userData , "user")
+console.log(updatedUserData,"update")
+dispatch(setUserData(updatedUserData));
+
   };
   // console.log(userData)
   useEffect(() => {

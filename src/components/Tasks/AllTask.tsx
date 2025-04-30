@@ -1,12 +1,21 @@
-import { AuthContext } from "../../context/Context"
-import { useContext, useState } from "react"
+// import { AuthContext } from "../../context/Context"
+import { useState } from "react"
 import EmployeeDashboard from "../dashboards/EmployeeDashboard";
-import { UserType , ContextType} from "../../Interfaces/UserType";
+import { UserType } from "../../Interfaces/UserType";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Redux/store";
+// import {  useNavigate } from "react-router";
 
 const AllTask = () => {
- const [userData ] = useContext(AuthContext)as [ContextType | null, React.Dispatch<React.SetStateAction<ContextType> | null>];
+//  const [userData ] = useContext(AuthContext)as [ContextType | null, React.Dispatch<React.SetStateAction<ContextType> | null>];
+const userData = useSelector((state:RootState) => state.authInfo);
  
  const [selectedEmp, setSelectedEmp] = useState<UserType | null>(null);
+//  const navigate = useNavigate();
+//  const handleEmp = (e : UserType) => {
+//   setSelectedEmp(e);
+//   navigate(`/Emp/rajbanka`);
+//  }
   return (
     <>
     {/* <h2 className="text-3xl font-bold mb-2">All Tasks</h2> */}
@@ -32,16 +41,20 @@ const AllTask = () => {
       </div>
     )
   })}
-  {selectedEmp && 
-  (
-  <EmployeeDashboard
-    data={selectedEmp}
-    changeUser={() => setSelectedEmp(null)} // back or clear
-  />
-)}
+{selectedEmp ? (
+      <EmployeeDashboard
+        data={selectedEmp}
+        changeUser={() => setSelectedEmp(null)}
+      />
+    ) : (
+      <div className="bg-[#2a2929] p-5 rounded mt-4">
+        {/* ...rest of your employee list rendering... */}
+      </div>
+    )}
 
   </div>
    </div>
+   
     </>
   )
 }

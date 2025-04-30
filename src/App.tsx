@@ -1,14 +1,16 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import AdminDashboard from './components/dashboards/AdminDashboard';
 import EmployeeDashboard from './components/dashboards/EmployeeDashboard';
 import Login from "./components/auth/Login"
-import  { AuthContext }from './context/Context'
-import { UserType , ContextType} from "./Interfaces/UserType"
+// import { Store } from '@reduxjs/toolkit';
+import { useSelector } from 'react-redux';
+// import  { AuthContext }from './context/Context'
+import { UserType } from "./Interfaces/UserType"
+import { RootState } from './Redux/store';
 // import { setLocalStorage } from './utils/LocalStorage';
 
-// setLocalStorage();
-// localStorage.clear();
+
 
 
 
@@ -19,9 +21,16 @@ interface loggedInData{
 
 function App() {
   const[userInfo ,setUserInfo ] = useState<UserType | null>(null);
- const [userData ] = useContext(AuthContext)as [ContextType | null, React.Dispatch<React.SetStateAction<ContextType> | null>];
+//  const [userData ] = useContext(AuthContext)as [ContextType | null, React.Dispatch<React.SetStateAction<ContextType> | null>];
+const userData = useSelector((state:RootState) => state. authInfo);
   const[user , setUser] = useState< 'user' | 'admin' | null >(null);
-// console.log(userData);
+// console.log(userData,"store");
+
+// useEffect(()=>{
+//   localStorage.clear();
+//   setLocalStorage();
+
+// },[])
 
 useEffect(() => {
   if (userData) {
