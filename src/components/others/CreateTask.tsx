@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ContextType, UserType } from "../../Interfaces/UserType";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
+import { useLocation } from "react-router";
 
 // interface UserType{
 //   name : string;
@@ -45,6 +46,9 @@ const  CreateTask : React.FC = ()=> {
   const [description , setDescription] = useState("");
   const [categories , setCategories] = useState("");
   const [assignedTo , setAssignedTo] = useState("");
+  const {state} = useLocation();
+  console.log(state,"rajstate");
+  
   // const [newTask , setNewTask] = useState({});
   
   // const [userData , setUserData ] = useContext(AuthContext)as [ContextType | null, React.Dispatch<React.SetStateAction<ContextType> | null>];

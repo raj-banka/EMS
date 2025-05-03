@@ -6,12 +6,19 @@ import App from './App.tsx'
 import { Provider } from 'react-redux'
 import { store } from './Redux/store.ts'
 import { createBrowserRouter, RouterProvider  } from 'react-router' 
+// import AllTask from './components/Tasks/AllTask.tsx'
+// import CreateTask from './components/others/CreateTask.tsx'
+import EmployeeDashboard from './components/dashboards/EmployeeDashboard.tsx'
 // import EmployeeDashboard from './components/dashboards/EmployeeDashboard.tsx'
 
 const router = createBrowserRouter([{
   path: "/",
   element: <App/>
 },
+{
+  path : "emp/rajbanka",
+  element : <EmployeeDashboard/>
+}
 ])
 
 createRoot(document.getElementById('root')!).render(
