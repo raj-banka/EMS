@@ -9,6 +9,7 @@ import { createBrowserRouter, RouterProvider  } from 'react-router'
 // import AllTask from './components/Tasks/AllTask.tsx'
 // import CreateTask from './components/others/CreateTask.tsx'
 import EmployeeDashboard from './components/dashboards/EmployeeDashboard.tsx'
+import AdminDashboard from './components/dashboards/AdminDashboard.tsx'
 // import EmployeeDashboard from './components/dashboards/EmployeeDashboard.tsx'
 
 const router = createBrowserRouter([{
@@ -16,8 +17,12 @@ const router = createBrowserRouter([{
   element: <App/>
 },
 {
-  path : "emp/rajbanka",
+  path : "user/emp",
   element : <EmployeeDashboard/>
+},
+{
+  path : "user/admin",
+  element : <AdminDashboard/>
 }
 ])
 

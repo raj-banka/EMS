@@ -5,8 +5,8 @@ import AllTask from "../Tasks/AllTask";
 import { UserType } from "../../Interfaces/UserType";
 
 interface AdminDashboardProps {
-  data: UserType | null; 
-  changeUser: React.Dispatch<React.SetStateAction<'admin' | 'user' | null>>;
+  data?: UserType | null; 
+  changeUser?: React.Dispatch<React.SetStateAction<'admin' | 'user' | null>>;
 }
 
 const AdminDashboard: React.FC<AdminDashboardProps> = ({ data, changeUser }) => {

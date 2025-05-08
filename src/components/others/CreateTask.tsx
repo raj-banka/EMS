@@ -5,6 +5,7 @@ import { ContextType, UserType } from "../../Interfaces/UserType";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
 import { useLocation } from "react-router";
+import { setUserData } from "../../Features/AuthSlice";
 
 // interface UserType{
 //   name : string;
@@ -56,7 +57,7 @@ const userData= useSelector((state:RootState) => state.authInfo);
 const dispatch = useDispatch();
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     const task = {
       title,
       date,
@@ -67,9 +68,10 @@ const dispatch = useDispatch();
       completed: false,
       failed: false
     };
-    console.log(userData , "check2")
-  
-    const updatedEmployees = userData?.employees?.map((emp:UserType) => {
+    
+    if (!userData) return;
+    
+    const updatedEmployees = userData.employees.map((emp:UserType) => {
       if (emp.name === assignedTo) {
         const updateCount = {
           ...emp.taskCount,
@@ -82,17 +84,19 @@ const dispatch = useDispatch();
         };
       }
       return emp;
-    }) || [];
+    });
 
-    console.log(updatedEmployees , "check2")
-  
-    if (!userData) return; 
-    const updatedUserData : ContextType= { ...userData, employees: updatedEmployees };
-    // setUserData(updatedUserData);
-    dispatch({type : 'UPDATE_USER_DATA' , payload:updatedUserData});
+    const updatedUserData = { 
+      ...userData, 
+      employees: updatedEmployees 
+    };
+    
+    // Use the correct action creator
+    dispatch(setUserData(updatedUserData));
+    
+    // Update localStorage
     localStorage.setItem("employees", JSON.stringify(updatedEmployees));
-    // console.log(userData);
-  
+
     // Clear form
     setTitle("");
     setDate("");
